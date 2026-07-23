@@ -1,244 +1,31 @@
-const questions = [
-  {
-    category: "TU DÍA A DÍA",
-    text: "¿Qué esperas principalmente de tu próximo dispositivo?",
-    answers: [
-      { text: "Una pantalla amplia para hacer de todo", scores: { fold: 3, ultra: 2 } },
-      { text: "Diseño compacto, ligero y con personalidad", scores: { flip: 4 } },
-      { text: "Acceso a información sin mirar el teléfono", scores: { glasses: 4 } },
-      { text: "Salud, actividad y conexión desde la muñeca", scores: { watch: 4 } }
-    ]
-  },
-  {
-    category: "TU RITMO",
-    text: "En un día ocupado, ¿qué situación se parece más a ti?",
-    answers: [
-      { text: "Trabajo con varias apps al mismo tiempo", scores: { ultra: 4, fold: 2 } },
-      { text: "Combino trabajo, series y redes sociales", scores: { fold: 4, flip: 1 } },
-      { text: "Quiero resolver todo con rapidez y estilo", scores: { flip: 3, glasses: 1 } },
-      { text: "Estoy en movimiento y reviso mis métricas", scores: { watch: 4 } }
-    ]
-  },
-  {
-    category: "TU MOMENTO WOW",
-    text: "¿Qué experiencia tecnológica te emociona más?",
-    answers: [
-      { text: "Convertir mi teléfono en una gran pantalla", scores: { fold: 4, ultra: 2 } },
-      { text: "Llevar la productividad al máximo nivel", scores: { ultra: 4 } },
-      { text: "Usar un dispositivo que también sea un accesorio", scores: { flip: 4, watch: 1 } },
-      { text: "Probar una categoría completamente nueva", scores: { glasses: 4 } }
-    ]
-  },
-  {
-    category: "TU CONTENIDO",
-    text: "¿Cómo disfrutas más tu tiempo libre?",
-    answers: [
-      { text: "Películas, series y videojuegos en pantalla grande", scores: { fold: 4, ultra: 2 } },
-      { text: "Crear, editar y compartir contenido", scores: { ultra: 4, flip: 2 } },
-      { text: "Salir, tomar fotos y llevar poco peso", scores: { flip: 4 } },
-      { text: "Entrenar, caminar y superar mis marcas", scores: { watch: 4 } }
-    ]
-  },
-  {
-    category: "TU PERSONALIDAD",
-    text: "Elige la frase que mejor te representa.",
-    answers: [
-      { text: "La productividad es mi superpoder", scores: { ultra: 4, fold: 1 } },
-      { text: "Quiero una experiencia que se transforme conmigo", scores: { fold: 4 } },
-      { text: "El diseño también habla de quién soy", scores: { flip: 4 } },
-      { text: "Siempre quiero probar primero el futuro", scores: { glasses: 4, watch: 1 } }
-    ]
-  },
-  {
-    category: "TU ELECCIÓN FINAL",
-    text: "Solo puedes llevar uno durante un viaje. ¿Cuál escoges?",
-    answers: [
-      { text: "El más versátil para entretenimiento y tareas", scores: { fold: 4 } },
-      { text: "El más potente para trabajar sin límites", scores: { ultra: 4 } },
-      { text: "El más compacto y llamativo", scores: { flip: 4 } },
-      { text: "El que me mantenga conectado sin usar las manos", scores: { glasses: 3, watch: 3 } }
-    ]
-  }
+const screens={welcome:document.getElementById('welcome'),interview:document.getElementById('interview'),result:document.getElementById('result'),farewell:document.getElementById('farewell')};
+const questions=[
+{kicker:'TU RITMO',text:'¿Cómo vives normalmente la tecnología?',options:[['Creo y produzco','Trabajo, edito y organizo varias cosas a la vez.','fold',3],['Con estilo propio','Me importa que cada dispositivo exprese mi personalidad.','flip',3],['Siempre conectado','Busco información y experiencias sin mirar una pantalla.','glasses',3],['En movimiento','La salud, el rendimiento y el seguimiento diario son esenciales.','watch',3]]},
+{kicker:'TU PANTALLA',text:'¿Qué experiencia visual te emociona más?',options:[['Una pantalla que se transforma','Grande para trabajar y disfrutar contenido.','fold',3],['Una pantalla compacta y expresiva','Pequeña cuando la guardo, protagonista cuando la uso.','flip',3],['Información integrada en mi entorno','Tecnología que acompaña mi mirada.','glasses',3],['Datos claros de un vistazo','Lo importante siempre en mi muñeca.','watch',3]]},
+{kicker:'TU MOMENTO',text:'Tienes una hora libre. ¿Qué haces?',options:[['Editar y avanzar un proyecto','Aprovecho cada minuto para crear algo.','fold',2],['Grabar fotos y videos','Busco un ángulo diferente y compartible.','flip',2],['Explorar un lugar nuevo','Quiero instrucciones y contexto sin distraerme.','glasses',2],['Entrenar o caminar','Me motiva ver mi progreso en tiempo real.','watch',2]]},
+{kicker:'TU SUPERPODER',text:'¿Qué valoras más en un dispositivo?',options:[['Productividad inmersiva','Que se adapte a tareas grandes y complejas.','fold',3],['Portabilidad creativa','Que sea compacto, distinto y divertido.','flip',3],['Interacción natural','Que la tecnología se sienta menos visible.','glasses',3],['Bienestar inteligente','Que me ayude a conocer mejor mi cuerpo y rutina.','watch',3]]},
+{kicker:'TU ESTILO',text:'¿Cómo quieres que te recuerden?',options:[['Como quien convierte ideas en resultados','Estrategia, ejecución y visión.','fold',2],['Como alguien auténtico e inesperado','Personalidad, color y espontaneidad.','flip',2],['Como quien siempre mira hacia adelante','Curiosidad y nuevas posibilidades.','glasses',2],['Como una persona constante','Equilibrio, disciplina y evolución.','watch',2]]},
+{kicker:'TU FUTURO',text:'Elige la frase que mejor te representa.',options:[['Quiero hacer más sin limitarme','Mi dispositivo debe crecer conmigo.','fold',4],['Quiero vivir la tecnología a mi manera','No sigo formatos: los transformo.','flip',4],['Quiero descubrir una nueva forma de ver el mundo','La innovación debe sentirse natural.','glasses',4],['Quiero conocerme mejor cada día','Los pequeños avances construyen grandes cambios.','watch',4]]}
 ];
-
-const results = {
-  fold: {
-    name: "Galaxy Z Fold8",
-    icon: "▣",
-    tagline: "Tu mundo se abre en grande.",
-    description:
-      "Buscas versatilidad, entretenimiento inmersivo y una experiencia capaz de transformarse contigo. Te gusta tener una pantalla amplia sin renunciar a la movilidad.",
-    traits: ["Versátil", "Inmersivo", "Multitarea"]
-  },
-  ultra: {
-    name: "Galaxy Z Fold8 Ultra",
-    icon: "▥",
-    tagline: "La productividad es tu superpoder.",
-    description:
-      "Quieres llevar el trabajo, la creación y la multitarea al máximo. Tu Galaxy ideal debe sentirse como una estación de productividad que cabe en tus manos.",
-    traits: ["Productivo", "Potente", "Creador"]
-  },
-  flip: {
-    name: "Galaxy Z Flip8",
-    icon: "◇",
-    tagline: "El diseño también habla de ti.",
-    description:
-      "Valoras un dispositivo compacto, expresivo y fácil de llevar. La tecnología debe adaptarse a tu estilo, no al revés.",
-    traits: ["Compacto", "Expresivo", "Ágil"]
-  },
-  glasses: {
-    name: "Galaxy Glasses",
-    icon: "∞",
-    tagline: "El futuro debe sentirse natural.",
-    description:
-      "Te emociona descubrir nuevas formas de interactuar con la tecnología. Buscas información y asistencia sin perder de vista lo que ocurre a tu alrededor.",
-    traits: ["Pionero", "Curioso", "Manos libres"]
-  },
-  watch: {
-    name: "Galaxy Watch",
-    icon: "◉",
-    tagline: "Tu bienestar siempre va contigo.",
-    description:
-      "Tu prioridad es mantenerte activo, conectado y atento a tu salud. Prefieres respuestas rápidas y datos útiles directamente desde tu muñeca.",
-    traits: ["Activo", "Conectado", "Bienestar"]
-  }
+const results={
+fold:{name:'Galaxy Z Fold8',tagline:'La productividad es tu superpoder.',description:'Combinas visión, creatividad y ejecución. Tu Galaxy ideal transforma una pantalla compacta en un espacio inmersivo para crear, trabajar y disfrutar contenido en grande.',className:'fold'},
+flip:{name:'Galaxy Z Flip8',tagline:'Tu estilo no cabe en un formato convencional.',description:'Vives la tecnología con personalidad y espontaneidad. Tu Galaxy ideal es compacto, expresivo y está preparado para capturar cada momento desde una perspectiva distinta.',className:'flip'},
+glasses:{name:'Galaxy Glasses',tagline:'Tu curiosidad cambia la forma de mirar el mundo.',description:'Buscas experiencias naturales, conectadas y futuristas. Tu Galaxy ideal integra información y descubrimiento sin alejarte de lo que sucede frente a ti.',className:'glasses'},
+watch:{name:'Galaxy Watch',tagline:'Tu constancia convierte datos en evolución.',description:'Te mueve el equilibrio entre bienestar, rendimiento y conexión. Tu Galaxy ideal acompaña cada paso y convierte tu rutina diaria en información útil.',className:'watch'}
 };
-
-const screens = {
-  start: document.querySelector("#start-screen"),
-  quiz: document.querySelector("#quiz-screen"),
-  result: document.querySelector("#result-screen")
-};
-
-const state = {
-  current: 0,
-  answers: Array(questions.length).fill(null)
-};
-
-const $ = (selector) => document.querySelector(selector);
-
-function showScreen(name) {
-  Object.values(screens).forEach((screen) => screen.classList.remove("active"));
-  screens[name].classList.add("active");
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function renderQuestion() {
-  const question = questions[state.current];
-  $("#question-category").textContent = question.category;
-  $("#question-text").textContent = question.text;
-  $("#progress-label").textContent = `Pregunta ${state.current + 1} de ${questions.length}`;
-  const percent = Math.round(((state.current + 1) / questions.length) * 100);
-  $("#progress-percent").textContent = `${percent}%`;
-  $("#progress-bar").style.width = `${percent}%`;
-
-  const answers = $("#answers");
-  answers.innerHTML = "";
-
-  question.answers.forEach((answer, index) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "answer-btn";
-    if (state.answers[state.current] === index) button.classList.add("selected");
-    button.innerHTML = `
-      <span class="answer-letter">${String.fromCharCode(65 + index)}</span>
-      <span>${answer.text}</span>
-    `;
-    button.addEventListener("click", () => {
-      state.answers[state.current] = index;
-      renderQuestion();
-      $("#next-btn").disabled = false;
-    });
-    answers.appendChild(button);
-  });
-
-  $("#back-btn").style.visibility = state.current === 0 ? "hidden" : "visible";
-  $("#next-btn").disabled = state.answers[state.current] === null;
-  $("#next-btn").textContent =
-    state.current === questions.length - 1 ? "Ver mi resultado →" : "Siguiente →";
-}
-
-function calculateResult() {
-  const score = { fold: 0, ultra: 0, flip: 0, glasses: 0, watch: 0 };
-
-  state.answers.forEach((answerIndex, questionIndex) => {
-    const scoring = questions[questionIndex].answers[answerIndex].scores;
-    Object.entries(scoring).forEach(([key, value]) => {
-      score[key] += value;
-    });
-  });
-
-  const priority = ["fold", "ultra", "flip", "glasses", "watch"];
-  return priority.sort((a, b) => score[b] - score[a])[0];
-}
-
-function renderResult() {
-  const key = calculateResult();
-  const result = results[key];
-
-  $("#result-name").textContent = result.name;
-  $("#result-icon").textContent = result.icon;
-  $("#result-tagline").textContent = result.tagline;
-  $("#result-description").textContent = result.description;
-  $("#result-traits").innerHTML = result.traits
-    .map((trait) => `<span>${trait}</span>`)
-    .join("");
-  $("#result-badge").textContent = `RESULTADO · ${key.toUpperCase()}`;
-
-  $("#result-card").dataset.result = key;
-  $("#share-status").textContent = "";
-  showScreen("result");
-}
-
-$("#start-btn").addEventListener("click", () => {
-  showScreen("quiz");
-  renderQuestion();
-});
-
-$("#next-btn").addEventListener("click", () => {
-  if (state.answers[state.current] === null) return;
-
-  if (state.current < questions.length - 1) {
-    state.current += 1;
-    renderQuestion();
-  } else {
-    renderResult();
-  }
-});
-
-$("#back-btn").addEventListener("click", () => {
-  if (state.current > 0) {
-    state.current -= 1;
-    renderQuestion();
-  }
-});
-
-$("#restart-btn").addEventListener("click", () => {
-  state.current = 0;
-  state.answers = Array(questions.length).fill(null);
-  showScreen("start");
-});
-
-$("#share-btn").addEventListener("click", async () => {
-  const resultName = $("#result-name").textContent;
-  const text = `Mi Galaxy ideal es ${resultName}. Descubre el tuyo en Galaxy Insider.`;
-
-  try {
-    if (navigator.share) {
-      await navigator.share({
-        title: "Mi Galaxy ideal",
-        text,
-        url: window.location.href
-      });
-      $("#share-status").textContent = "¡Resultado compartido!";
-    } else {
-      $("#share-status").textContent =
-        "Haz una captura de pantalla para compartir tu resultado.";
-    }
-  } catch (error) {
-    if (error.name !== "AbortError") {
-      $("#share-status").textContent =
-        "Haz una captura de pantalla para compartir tu resultado.";
-    }
-  }
-});
+let current=0,scores={fold:0,flip:0,glasses:0,watch:0},selections=[];
+const qText=document.getElementById('questionText'),qKicker=document.getElementById('questionKicker'),answers=document.getElementById('answers'),progressText=document.getElementById('progressText'),progressBar=document.getElementById('progressBar'),backBtn=document.getElementById('backBtn'),toast=document.getElementById('toast');
+function showScreen(name){Object.entries(screens).forEach(([key,el])=>el.classList.toggle('active',key===name));window.scrollTo(0,0)}
+function renderQuestion(){const q=questions[current];qKicker.textContent=q.kicker;qText.textContent=q.text;progressText.textContent=`${String(current+1).padStart(2,'0')} / ${String(questions.length).padStart(2,'0')}`;progressBar.style.width=`${((current+1)/questions.length)*100}%`;backBtn.style.visibility=current===0?'hidden':'visible';answers.innerHTML='';q.options.forEach(([title,detail,type,points],index)=>{const b=document.createElement('button');b.className='answer';b.type='button';b.innerHTML=`<strong>${title}</strong><span>${detail}</span>`;b.onclick=()=>choose(index,type,points);answers.appendChild(b)})}
+function choose(index,type,points){selections[current]={index,type,points};scores[type]+=points;if(current<questions.length-1){current++;renderQuestion()}else showResult()}
+function winningType(){return Object.keys(scores).sort((a,b)=>scores[b]-scores[a])[0]}
+function showResult(){const type=winningType(),data=results[type];document.getElementById('resultName').textContent=data.name;document.getElementById('resultTagline').textContent=`“${data.tagline}”`;document.getElementById('resultDescription').textContent=data.description;document.getElementById('deviceArt').className=`device-art ${data.className}`;showScreen('result')}
+function goBack(){if(current===0)return;const previous=selections[current-1];if(previous)scores[previous.type]-=previous.points;selections[current-1]=undefined;current--;renderQuestion()}
+function reset(){current=0;scores={fold:0,flip:0,glasses:0,watch:0};selections=[];renderQuestion()}
+function notify(message){toast.textContent=message;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200)}
+function wrapText(ctx,text,x,y,maxWidth,lineHeight){const words=text.split(' ');let line='';for(const word of words){const test=line+word+' ';if(ctx.measureText(test).width>maxWidth&&line){ctx.fillText(line.trim(),x,y);line=word+' ';y+=lineHeight}else line=test}ctx.fillText(line.trim(),x,y)}
+function drawCover(){const c=document.getElementById('coverCanvas'),ctx=c.getContext('2d'),type=winningType(),d=results[type];const bg=ctx.createLinearGradient(0,0,1080,1350);bg.addColorStop(0,'#071d42');bg.addColorStop(.55,'#020612');bg.addColorStop(1,'#09264d');ctx.fillStyle=bg;ctx.fillRect(0,0,1080,1350);ctx.fillStyle='#58baff';ctx.font='600 28px Arial';ctx.fillText('TU GALAXY IDEAL',74,92);ctx.fillStyle='#fff';ctx.font='700 92px Arial';wrapText(ctx,d.name,74,220,850,98);ctx.fillStyle='#dbe8f7';ctx.font='400 39px Arial';wrapText(ctx,`“${d.tagline}”`,74,445,780,52);ctx.fillStyle='#b7c5d8';ctx.font='400 30px Arial';wrapText(ctx,d.description,74,920,900,44);ctx.strokeStyle='rgba(255,255,255,.18)';ctx.beginPath();ctx.moveTo(74,1240);ctx.lineTo(1006,1240);ctx.stroke();ctx.fillStyle='#fff';ctx.font='600 24px Arial';ctx.fillText('GALAXY INSIDER',74,1293);ctx.fillStyle='#7f91aa';ctx.fillText('LONDRES 2026',820,1293);return c}
+document.getElementById('startBtn').onclick=()=>{reset();showScreen('interview')};backBtn.onclick=goBack;document.getElementById('restartBtn').onclick=()=>{reset();showScreen('interview')};document.getElementById('finishBtn').onclick=()=>showScreen('welcome');
+document.getElementById('downloadBtn').onclick=()=>{const c=drawCover(),a=document.createElement('a');a.download='mi-portada-galaxy-insider.png';a.href=c.toDataURL('image/png');a.click();notify('Portada guardada');setTimeout(()=>showScreen('farewell'),900)};
+document.getElementById('shareBtn').onclick=async()=>{const d=results[winningType()],text=`Mi Galaxy ideal es ${d.name}: ${d.tagline} #GalaxyInsider`;try{if(navigator.share)await navigator.share({title:'Galaxy Insider',text});else{await navigator.clipboard.writeText(text);notify('Resultado copiado')}setTimeout(()=>showScreen('farewell'),700)}catch(e){}};
+renderQuestion();
