@@ -1,115 +1,79 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#071126" />
-  <meta name="description" content="Descubre qué nuevo Galaxy va mejor contigo." />
-  <title>Galaxy Insider — Descubre tu Galaxy ideal</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#020612">
+<title>Galaxy Insider · Edición Personal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="app-shell">
-    <section class="magazine-frame" aria-live="polite">
-      <header class="masthead">
-        <div>
-          <p class="eyebrow">EDICIÓN ESPECIAL · GALAXY UNPACKED 2026</p>
-          <h1>GALAXY <span>INSIDER</span></h1>
-        </div>
-        <div class="issue">QUIZ<br><strong>01</strong></div>
-      </header>
+<div class="ambient" aria-hidden="true"><span class="orb one"></span><span class="orb two"></span><span class="grid"></span></div>
+<main>
+<section class="screen hero active" id="welcome">
+  <div class="hero-photo"><img src="assets/martin-hero.jpg" alt=""><div class="shade"></div><div class="glint"></div></div>
+  <header class="topline"><span>EDICIÓN ESPECIAL</span><span>LONDRES 2026</span></header>
+  <div class="hero-copy">
+    <p class="eyebrow">EDICIÓN PERSONAL</p>
+    <h1><span>GALAXY</span><strong>INSIDER</strong></h1>
+    <p class="headline">La entrevista aún no termina.</p>
+    <p class="intro">Bienvenido a la Sala de Prensa Galaxy. Descubre qué dispositivo refleja mejor tu forma de vivir la tecnología.</p>
+    <button class="primary" id="startBtn">◉ <span>Comenzar entrevista</span> →</button>
+    <p class="micro">6 preguntas · aproximadamente 1 minuto</p>
+  </div>
+  <footer class="hero-footer"><span>UNA EXPERIENCIA PERSONALIZADA</span><span>CREADA PARA LA COMUNIDAD</span></footer>
+</section>
 
-      <div id="start-screen" class="screen active">
-        <div class="hero-orbit" aria-hidden="true">
-          <div class="orbit orbit-a"></div>
-          <div class="orbit orbit-b"></div>
-          <div class="device device-fold">▣</div>
-          <div class="device device-flip">◇</div>
-          <div class="device device-watch">◉</div>
-          <div class="device device-glasses">∞</div>
-        </div>
+<section class="screen interview" id="interview">
+  <header class="interview-header">
+    <div><span class="brand">GALAXY INSIDER</span><span class="section">ENTREVISTA</span></div>
+    <span id="progressText">01 / 06</span>
+  </header>
+  <div class="progress"><span id="progressBar"></span></div>
+  <article class="question-card" id="questionCard">
+    <p class="question-kicker" id="questionKicker"></p>
+    <h2 id="questionText"></h2>
+    <div class="answers" id="answers"></div>
+  </article>
+  <footer class="interview-footer"><button class="text-btn" id="backBtn">← Anterior</button><span>Elige la opción que más se parezca a ti</span></footer>
+</section>
 
-        <p class="kicker">SALA DE PRENSA GALAXY</p>
-        <h2>¿Qué Galaxy<br>va contigo?</h2>
-        <p class="lead">
-          Responde seis preguntas rápidas y descubre qué dispositivo encaja mejor
-          con tu forma de crear, trabajar, moverte y disfrutar la tecnología.
-        </p>
+<section class="screen result" id="result">
+  <div class="result-shell">
+    <header class="result-header"><span>GALAXY INSIDER</span><span>EDICIÓN PERSONAL</span></header>
+    <div class="cover">
+      <span class="cover-edition">TU GALAXY IDEAL</span>
+      <h2 id="resultName"></h2>
+      <p class="tagline" id="resultTagline"></p>
+      <div class="device-art" id="deviceArt"></div>
+      <p class="description" id="resultDescription"></p>
+      <div class="cover-signature"><span>GALAXY INSIDER</span><span>LONDRES 2026</span></div>
+    </div>
+    <div class="actions">
+      <button class="primary compact" id="downloadBtn">Guardar mi portada</button>
+      <button class="secondary" id="shareBtn">Compartir resultado</button>
+      <button class="text-btn" id="restartBtn">Repetir entrevista</button>
+    </div>
+  </div>
+</section>
 
-        <div class="meta-row">
-          <span>6 preguntas</span>
-          <span>Menos de 1 minuto</span>
-          <span>Resultado personalizado</span>
-        </div>
-
-        <button id="start-btn" class="primary-btn" type="button">
-          Comenzar entrevista
-          <span aria-hidden="true">→</span>
-        </button>
-      </div>
-
-      <div id="quiz-screen" class="screen">
-        <div class="progress-wrap">
-          <div class="progress-copy">
-            <span id="progress-label">Pregunta 1 de 6</span>
-            <span id="progress-percent">17%</span>
-          </div>
-          <div class="progress-track" aria-hidden="true">
-            <div id="progress-bar" class="progress-bar"></div>
-          </div>
-        </div>
-
-        <div class="question-card">
-          <p id="question-category" class="kicker">TU ESTILO GALAXY</p>
-          <h2 id="question-text"></h2>
-          <div id="answers" class="answers"></div>
-        </div>
-
-        <div class="quiz-nav">
-          <button id="back-btn" class="secondary-btn" type="button">← Anterior</button>
-          <button id="next-btn" class="primary-btn" type="button" disabled>
-            Siguiente →
-          </button>
-        </div>
-      </div>
-
-      <div id="result-screen" class="screen">
-        <p class="kicker">GALAXY INSIDER · EDICIÓN PERSONAL</p>
-        <div id="result-badge" class="result-badge">TU RESULTADO</div>
-        <h2>Tu Galaxy ideal es...</h2>
-
-        <div id="result-card" class="result-card">
-          <div class="result-visual">
-            <div id="result-icon" class="result-icon" aria-hidden="true"></div>
-            <div class="result-glow"></div>
-          </div>
-          <div class="result-copy">
-            <p id="result-tagline" class="result-tagline"></p>
-            <h3 id="result-name"></h3>
-            <p id="result-description"></p>
-            <div id="result-traits" class="trait-list"></div>
-          </div>
-        </div>
-
-        <p class="share-prompt">
-          ¿Coincidió contigo? Haz una captura de pantalla y comparte tu resultado
-          en Samsung Members.
-        </p>
-
-        <div class="result-actions">
-          <button id="restart-btn" class="secondary-btn" type="button">Repetir quiz</button>
-          <button id="share-btn" class="primary-btn" type="button">Compartir resultado</button>
-        </div>
-        <p id="share-status" class="share-status" role="status"></p>
-      </div>
-
-      <footer class="footer">
-        <span>Creado por José Martín Martínez · Samsung Members Star México</span>
-        <span>Experiencia conceptual no oficial</span>
-      </footer>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
+<section class="screen farewell" id="farewell">
+  <div class="farewell-photo"><img src="assets/martin-hero.jpg" alt="Martín Martínez mostrando un dispositivo Galaxy"></div>
+  <div class="farewell-copy">
+    <p class="eyebrow">NOTA DEL EDITOR</p>
+    <h2>Gracias por formar parte de esta edición.</h2>
+    <p>Galaxy Insider nació después del Galaxy Unpacked Londres 2026 con una idea sencilla: la tecnología también puede contar historias.</p>
+    <blockquote>“Cada Galaxy cuenta una historia. Gracias por compartir la tuya.”</blockquote>
+    <p><strong>Martín Martínez</strong><br>Samsung Members Star México</p>
+    <button class="secondary" id="finishBtn">Volver a la portada</button>
+  </div>
+</section>
+</main>
+<div class="toast" id="toast"></div>
+<canvas id="coverCanvas" width="1080" height="1350" hidden></canvas>
+<script src="script.js"></script>
 </body>
 </html>
