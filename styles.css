@@ -26,6 +26,6 @@ h1{margin:0 0 34px;line-height:.82;font-family:"Space Grotesk";font-weight:400;l
 /* Ajuste de la imagen de portada en celulares */
 @media (max-width: 900px) {
     .hero-photo img {
-        object-position: center center !important;
+        object-position: right center !important;
     }
 }
